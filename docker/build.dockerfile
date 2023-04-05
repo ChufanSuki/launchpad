@@ -77,9 +77,10 @@ RUN for version in ${python_version}; do \
 RUN rm get-pip.py
 
 # Removes existing links so they can be created to point where we expect.
-RUN rm /dt7/usr/include/x86_64-linux-gnu/python3.8
-RUN rm /dt7/usr/include/x86_64-linux-gnu/python3.9
-RUN rm /dt7/usr/include/x86_64-linux-gnu/python3.10
+# See: https://superuser.com/questions/76061/how-do-i-make-rm-not-give-an-error-if-a-file-doesnt-exist
+RUN rm /dt7/usr/include/x86_64-linux-gnu/python3.8 || true
+RUN rm /dt7/usr/include/x86_64-linux-gnu/python3.9 || true
+RUN rm /dt7/usr/include/x86_64-linux-gnu/python3.10 || true
 
 # Needed until this is included in the base TF image.
 RUN ln -s "/usr/include/x86_64-linux-gnu/python3.8" "/dt7/usr/include/x86_64-linux-gnu/python3.8"
