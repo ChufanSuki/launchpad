@@ -1,8 +1,8 @@
-ARG cpu_base_image="tensorflow/build:2.8-python3.7"
+ARG cpu_base_image="tensorflow/build:latest-python3.8"
 ARG base_image=$cpu_base_image
 FROM $base_image
 
-LABEL maintainer="Launchpad Team <no-reply@google.com>"
+LABEL maintainer="Chufan Chen <allenplato28@google.com>"
 ARG tensorflow_pip="tf-nightly"
 ARG python_version="3.8"
 ARG APT_COMMAND="apt-get -o Acquire::Retries=3 -y"
@@ -11,6 +11,7 @@ ARG APT_COMMAND="apt-get -o Acquire::Retries=3 -y"
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 # Pick up some TF dependencies
 RUN ${APT_COMMAND} update && ${APT_COMMAND} install -y --no-install-recommends \
         software-properties-common \
@@ -25,7 +26,6 @@ RUN ${APT_COMMAND} update && ${APT_COMMAND} install -y --no-install-recommends \
         libzmq3-dev \
         lsof \
         pkg-config \
-        python3.7-dev \
         python3.8-dev \
         python3.9-dev \
         python3.10-dev \
