@@ -1,0 +1,19 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        docker pull chufansuki/launchpad:devel-
+    - name: Test
+      run: |
+        ls
+        docker run --rm --mount "type=bind,src=$PWD,dst=/tmp/launchpad" -it launchpad:devel- bash
+        /tmp/launchpad/oss_build.sh
+        python3.8 -m launchpad.examples.hello_world.launch
+        python3.8 -m launchpad.examples.consumer_producers.launch --lp_launch_type=local_mp
