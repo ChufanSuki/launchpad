@@ -52,6 +52,7 @@ class LaunchType(enum.Enum):
   # Please follow the steps described at
   # https://github.com/deepmind/xmanager#create-a-gcp-project.
   VERTEX_AI = 'vertex_ai'
+  SSH_MULTI_MACHINES = 'ssh_multi_machines'
 
 
 class LaunchContext(object):

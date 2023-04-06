@@ -102,6 +102,10 @@ class PyNode(base.Node[HandleType], Generic[HandleType, ReturnType]):
           launch_context.launch_config,
           pdb_post_mortem=False,
       )
+    elif (launch_context.launch_type is
+          context.LaunchType.SSH_MULTI_MACHINES):
+      return ssh_multi_machines.to_ssh_multimachines_executables(
+          nodes, label, launch_context.launch_config, pdb_post_mortem=True)
     elif launch_context.launch_type == context.LaunchType.VERTEX_AI:
       from launchpad.nodes.python import xm_docker  
       return xm_docker.to_docker_executables(nodes,
@@ -119,6 +123,8 @@ class PyNode(base.Node[HandleType], Generic[HandleType, ReturnType]):
         context.LaunchType.TEST_MULTI_THREADING,
     ]:
       addressing.bind_addresses_local(self.addresses)
+    elif self._launch_context.launch_type == context.LaunchType.SSH_MULTI_MACHINES:
+      addressing.bind_addresses_ssh(self.addresses, **kwargs)
     elif self._launch_context.launch_type == context.LaunchType.VERTEX_AI:
       addressing.bind_addresses_vertex_ai(self.addresses, **kwargs)
     else:

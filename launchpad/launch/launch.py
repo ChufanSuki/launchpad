@@ -28,6 +28,7 @@ from launchpad.launch.local_multi_processing import launch as launch_local_multi
 from launchpad.launch.local_multi_threading import launch as launch_local_multithreaded
 from launchpad.launch.test_multi_processing import launch as launch_test_multiprocessed
 from launchpad.launch.test_multi_threading import launch as launch_test_multithreaded
+from launchpad.launch.ssh_multi_machines import launch as launch_ssh_multi_machines
 
 FLAGS = flags.FLAGS
 
@@ -99,6 +100,9 @@ def launch(
         program, serialize_py_nodes=serialize_py_nodes)
   elif launch_type is context.LaunchType.LOCAL_MULTI_PROCESSING:
     return launch_local_multiprocessed.launch(program, local_resources,
+                                              terminal)
+  elif launch_type is context.LaunchType.SSH_MULTI_MACHINES:
+    return launch_ssh_multi_machines.launch(program, local_resources,
                                               terminal)
   elif launch_type is context.LaunchType.VERTEX_AI:
     from launchpad.launch.xm_docker import launch as launch_xm_docker  
