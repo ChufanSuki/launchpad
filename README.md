@@ -52,11 +52,16 @@ for details.
 
 ## Table of Contents
 
--   [Installation](#installation)
--   [Quick Start](docs/get_started.md)
--   [Citing Launchpad](#citing-Launchpad)
--   [Acknowledgements](#acknowledgements)
--   [Other resources](#other-resources)
+- [Launchpad](#launchpad)
+  - [Supported launch types](#supported-launch-types)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Nightly builds](#nightly-builds)
+    - [Develop Launchpad inside a docker container](#develop-launchpad-inside-a-docker-container)
+  - [Citing Launchpad](#citing-launchpad)
+  - [Acknowledgements](#acknowledgements)
+  - [Other resources](#other-resources)
+  - [Test](#test)
 
 ## Installation
 
@@ -182,3 +187,10 @@ up building and testing setup for Launchpad.
 ## Other resources
 
 *   [FAQ](docs/faq.md)
+
+## Test
+
+```bash
+sudo docker run --rm --mount "type=bind,src=$PWD,dst=/tmp/launchpad"  -it --net host chufansuki/launchpad:devel-147c65c bash
+```
+` curl cip.cc`

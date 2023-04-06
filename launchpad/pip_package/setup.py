@@ -93,6 +93,8 @@ class SetupToolsHelper(object):
         'protobuf',
         'psutil',
         'termcolor',
+        'dask',
+        'distributed'
     ]
     return required_packages
 

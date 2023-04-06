@@ -40,7 +40,21 @@ def bind_addresses_local(addresses: List[lp_address.Address]):
 
   for address in addresses:
     address.bind(lp_address.SimpleLocalAddressBuilder())
+    
+class SSHAddressBuilder(lp_address.AbstractAddressBuilder):
+  """Builds an address for the ssh launch."""
 
+  def __init__(self, address: str):
+    self._address = address
+
+  def build(self) -> str:
+    return self._address
+
+def bind_addresses_ssh(addresses: List[lp_address.Address]):
+  """Binds addresses for the ssh launch."""
+
+  for address in addresses:
+    address.bind(SSHAddressBuilder(address.name))
 
 class VertextAiAddressBuilder(lp_address.AbstractAddressBuilder):
   """Builds an address for Vertex AI."""
