@@ -58,8 +58,8 @@ for details.
   - [Installation](#installation)
     - [Nightly builds](#nightly-builds)
     - [Develop Launchpad inside a docker container](#develop-launchpad-inside-a-docker-container)
-  - [Citing Launchpad](#citing-launchpad)
   - [Acknowledgements](#acknowledgements)
+    - [Citing Launchpad](#citing-launchpad)
   - [Other resources](#other-resources)
   - [Test](#test)
 
@@ -159,8 +159,13 @@ visible inside the Docker container. To recompile just run the `oss_build.sh`
 script again from the Docker container. In order to reduce compilation time of
 the consecutive runs, make sure to not exit the Docker container.
 
+## Acknowledgements
 
-## Citing Launchpad
+We greatly appreciate all the help from [Reverb](https://github.com/deepmind/reverb)
+and [TF-Agents](https://github.com/tensorflow/agents) teams in setting
+up building and testing setup for Launchpad.
+
+### Citing Launchpad
 
 If you use Launchpad in your work, please cite the accompanying
 [technical report](https://arxiv.org/pdf/2106.04516):
@@ -178,12 +183,6 @@ If you use Launchpad in your work, please cite the accompanying
 }
 ```
 
-## Acknowledgements
-
-We greatly appreciate all the help from [Reverb](https://github.com/deepmind/reverb)
-and [TF-Agents](https://github.com/tensorflow/agents) teams in setting
-up building and testing setup for Launchpad.
-
 ## Other resources
 
 *   [FAQ](docs/faq.md)
@@ -193,4 +192,3 @@ up building and testing setup for Launchpad.
 ```bash
 sudo docker run --rm --mount "type=bind,src=$PWD,dst=/tmp/launchpad"  -it --net host chufansuki/launchpad:devel-147c65c bash
 ```
-` curl cip.cc`
